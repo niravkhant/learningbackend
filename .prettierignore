@@ -1,0 +1,13 @@
+*.env
+.env
+.env*
+
+/.vscode
+/node_modules
+./dist
+/dist
+
+/next
+/_next
+
+.gitignore
