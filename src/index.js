@@ -17,7 +17,7 @@ homepageRoute;
 connectDB()
     .then(() => {
         app.listen(process.env.PORT || 8000, () => {
-            console.log(`Server is Running at http://localhost:${process.env.PORT}`);
+            console.log(`⚙ Server is Running at http://localhost:${process.env.PORT}`);
         })
     })
     .catch((error) => {
