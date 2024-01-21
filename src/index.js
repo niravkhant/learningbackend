@@ -6,7 +6,7 @@ import app from "./app.js";
 import { homepageRoute } from "./routes/index.routes.js";
 
 dotenv.config({
-    path: './env'
+    path: './.env'
 })
 
 // const app = express();

@@ -29,7 +29,7 @@ const registerUser = asyncHandler(async (req, res) => {
         throw new ApiError(400, "All fields are required")
     }
     
-    const existedUser = User.findOne({
+    const existedUser = await User.findOne({
             $or: [{ username }, { email }]
         })
     if (existedUser){
@@ -50,7 +50,7 @@ const registerUser = asyncHandler(async (req, res) => {
         throw new ApiError(400, "Avatar file is required")
     }
 
-    const user =  User.create({
+    const user = await User.create({
         fullname,
         avatar: avatar.url,
         coverImage: coverImage?.url || "",
@@ -59,7 +59,10 @@ const registerUser = asyncHandler(async (req, res) => {
         username: username.toLowerCase()
     })
 
-    const createdUser = await User.findById(user._id).select("-password -refreshToken");
+    const createdUser = await User.findById(user._id).select(
+        "-password -refreshToken"
+        )
+
     if(!createdUser){
         throw new ApiError(500, "Something went wrong while registering the user")
     }
