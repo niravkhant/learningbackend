@@ -226,4 +226,16 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
   }
 });
 
-export { registerUser, loginUser, logoutUser, refreshAccessToken };
+const getUsers = async (req, res) => {
+  try {
+    // Retrieve all users from the "users" collection
+    const users = await User.find().select(
+      "-password -refreshToken"
+    );
+    res.json(users);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+export { registerUser, loginUser, logoutUser, refreshAccessToken, getUsers };
